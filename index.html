@@ -1,13 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="main.js" defer></script>
-    <title>Book Archive</title>
-</head>
-<body>
-    
-</body>
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+      <!-- Bootstarp Css -->
+      <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+      />
+      <!-- Font awesome -->
+      <script src="https://kit.fontawesome.com/f1693a0f9b.js" crossorigin="anonymous"></script>
+      <!-- Custom Css -->
+      <link rel="stylesheet" href="style.css">
+
+      <!-- Javascript -->
+      <script src="main.js" defer></script>
+
+      <title>Book Archive</title>
+   </head>
+   
+   <nav class="text-center mt-4">
+       <h1 class="text-light">Book Archive <i class="fas fa-book"></i></h1>
+   </nav>
+
+   <body class="px-2">
+    <div class="container-lg">
+        <!-- Search bar start -->
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-5">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search by books" aria-label="Books name" aria-describedby="basic-addon2" id="searchInput">
+                    <span class="input-group-text btn text-white" id="basic-addon2">Search</span>
+                </div>
+            </div>
+        </div>
+        <!-- Search bar end -->
+
+        <div class="row justify-content-center mt-5 d-none" id="spinner">
+            <div class="spinner-border text-light" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-stretch g-3 d-none" id="booksContainer">
+            
+ 
+        </div>
+
+    </div>
+ 
+   </body>
 </html>
