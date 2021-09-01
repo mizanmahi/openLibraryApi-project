@@ -5,18 +5,42 @@ const searchIput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('basic-addon2');
 const booksContainer = document.getElementById('booksContainer');
 const spinner = document.getElementById('spinner');
+const alert = document.getElementById('alert');
+const warning = document.getElementById('warning');
+const warningDiv = document.getElementById('warningDiv');
+
 
 searchBtn.addEventListener('click', async () => {
     const searchTerm = searchIput.value.trim();
     searchIput.value = '';
-    console.log(searchTerm);
+    alert.classList.add('d-none');
+    warning.classList.add('d-none');
+
+
+    if(searchTerm.length === 0){
+        alert.classList.remove('d-none');
+        warning.classList.add('d-none');
+
+        booksContainer.textContent = '';
+
+        return;
+    }
 
    try {
        spinner.classList.remove('d-none');
+       booksContainer.textContent = '';
+
        const response = await fetch(`${url}${searchTerm}`)
        const data = await response.json();
        console.log(data);
-       renderBooks(data);
+       if(data.numFound === 0 || data.docs.length === 0){
+            warning.classList.remove('d-none');
+            warningDiv.innerHTML = `No data matched with the keyword <span class="text-decoration-line-through">${searchTerm}</span>`;
+            spinner.classList.add('d-none');
+
+       }else {
+        renderBooks(data);
+       }
    } catch (error) {
        console.log(error);
    }
@@ -26,7 +50,7 @@ searchBtn.addEventListener('click', async () => {
 const renderBooks = ({ numFound, start, docs:books }) => {
     spinner.classList.add('d-none');
     booksContainer.classList.remove('d-none');
-    booksContainer.textContent = '';
+    // booksContainer.textContent = '';
 
     showResultCount(books.length, numFound);
 
@@ -65,7 +89,7 @@ const showResultCount = (showCount, totalResult) => {
     div.innerHTML = `
     
     <div class="col-md-6">
-     <p class="text-light">Showing ${showCount} of ${totalResult} books</p>  
+     <p class="text-light fw-bold">Showing ${showCount} of ${totalResult} books</p>  
     </div>
 
     `;
