@@ -48,18 +48,18 @@ searchBtn.addEventListener('click', async () => {
 const renderBooks = ({ numFound, docs: books }) => {
    spinner.classList.add('d-none');
    booksContainer.classList.remove('d-none');
-   // booksContainer.textContent = '';
 
    showResultCount(books.length, numFound);
 
    books.forEach(
       ({ title, cover_i, author_name, first_publish_year, publisher }) => {
-
          const bookContainer = document.createElement('div');
          bookContainer.classList.add('col-md-4', 'col-lg-3');
+
          const imageUrl = cover_i
             ? `https://covers.openlibrary.org/b/id/${cover_i}-M.jpg`
             : 'images/noimage.png';
+
          bookContainer.innerHTML = `
 
         <div class="card border rounded text-center shadow-lg" style="min-height: 100%;" id="card">
