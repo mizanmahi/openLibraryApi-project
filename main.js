@@ -31,7 +31,7 @@ searchBtn.addEventListener('click', async () => {
 
       const response = await fetch(`${url}${searchTerm}`);
       const data = await response.json();
-      console.log(data);
+
       if (data.numFound === 0 || data.docs.length === 0) {
          warning.classList.remove('d-none');
          warningDiv.innerHTML = `No data matched with the keyword <span class="text-decoration-line-through">${searchTerm}</span>`;
@@ -54,7 +54,7 @@ const renderBooks = ({ numFound, docs: books }) => {
 
    books.forEach(
       ({ title, cover_i, author_name, first_publish_year, publisher }) => {
-         console.log(publisher);
+          
          const bookContainer = document.createElement('div');
          bookContainer.classList.add('col-md-4', 'col-lg-3');
          const imageUrl = cover_i
