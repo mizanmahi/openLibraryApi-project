@@ -62,7 +62,7 @@ const renderBooks = ({ numFound, docs: books }) => {
             : 'images/noimage.png';
          bookContainer.innerHTML = `
 
-        <div class="card border rounded text-center shadow-lg" style="height: 38rem;" id="card">
+        <div class="card border rounded text-center shadow-lg" style="min-height: 100%;" id="card">
             <img src="${imageUrl}" class="card-img-top img-fluid" alt="Book Cover" style="height: 20rem;"> 
             
                 <h5 class="card-title text-color py-4 fw-bolder">Title: ${
