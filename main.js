@@ -1,4 +1,4 @@
-const url = 'http://openlibrary.org/search.json?q=';
+const url = 'https://openlibrary.org/search.json?q=';
 
 const searchIput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('basic-addon2');
@@ -54,7 +54,7 @@ const renderBooks = ({ numFound, docs: books }) => {
 
    books.forEach(
       ({ title, cover_i, author_name, first_publish_year, publisher }) => {
-          
+
          const bookContainer = document.createElement('div');
          bookContainer.classList.add('col-md-4', 'col-lg-3');
          const imageUrl = cover_i
