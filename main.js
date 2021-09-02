@@ -8,6 +8,7 @@ const spinner = document.getElementById('spinner');
 const alert = document.getElementById('alert');
 const warning = document.getElementById('warning');
 const warningDiv = document.getElementById('warningDiv');
+const serverError = document.getElementById('serverError');
 
 
 searchBtn.addEventListener('click', async () => {
@@ -15,6 +16,7 @@ searchBtn.addEventListener('click', async () => {
     searchIput.value = '';
     alert.classList.add('d-none');
     warning.classList.add('d-none');
+    serverError.classList.add('d-none');
 
 
     if(searchTerm.length === 0){
@@ -42,7 +44,9 @@ searchBtn.addEventListener('click', async () => {
         renderBooks(data);
        }
    } catch (error) {
-       console.log(error);
+    serverError.classList.remove('d-none');
+    spinner.classList.add('d-none');
+
    }
 });
 
@@ -54,27 +58,24 @@ const renderBooks = ({ numFound, start, docs:books }) => {
 
     showResultCount(books.length, numFound);
 
-    books.forEach(({ title, cover_i }) => {
+    books.forEach(({ title, cover_i, author_name, first_publish_year, publisher }) => {
+        console.log(publisher);
         const bookContainer = document.createElement('div');
         bookContainer.classList.add('col-md-4','col-lg-3');
         const imageUrl = cover_i ? `https://covers.openlibrary.org/b/id/${cover_i}-M.jpg` : 'images/noimage.png'
         bookContainer.innerHTML = `
 
-        <div class="card" style="height: 45rem;">
+        <div class="card border rounded text-center shadow-lg" style="height: 38rem;" id="card">
             <img src="${imageUrl}" class="card-img-top img-fluid" alt="Book Cover" style="height: 20rem;"> 
-            <div class="card-body">
-                <h5 class="card-title">${title}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
+            
+                <h5 class="card-title text-color py-4 fw-bolder">Title: ${title ? title : 'No Title Found For This Book'}</h5>
+           
+            
+                <div class="text-start px-2">
+                    <p class="text-light "><span class="fw-bold text-color">Author: </span> ${author_name ? author_name : 'No Author Name Found'}</p>
+                    <p class="text-light "><span class="fw-bold text-color">First Published: </span> ${first_publish_year ? first_publish_year : 'No Publish Year Found'}</p>
+                    <p class="text-light "><span class="fw-bold text-color">Publisher: </span> ${publisher ? publisher.slice(0, 2) : 'No Publiser Found'}</p>
+                </div>
         </div>
     
     `
