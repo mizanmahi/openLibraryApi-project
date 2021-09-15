@@ -80,7 +80,7 @@ const renderBooks = ({ numFound, docs }) => {
         <div class="card border rounded text-center shadow-lg" style="min-height: 100%;" id="card">
             <img src="${imageUrl}" class="card-img-top img-fluid" alt="Book Cover" style="height: 20rem;"> 
             
-                <h5 class="card-title text-color py-4 fw-bolder">Title: ${
+                <h5 class="card-title py-4 fw-bolder text-white"><span class="text-color">Title:</span> ${
                    title ? title : 'No Title Found For This Book'
                 }</h5>
            
