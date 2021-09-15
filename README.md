@@ -1,2 +1,2 @@
-# Assignment #6
 ## Books archive (API Project)
+# Using Open Library API

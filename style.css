@@ -30,5 +30,15 @@ i {
 }
 
 .text-color {
-   color: var(--color);
+   color: var(--color) !important;
+}
+
+#loadMoreBtn {
+   color: var(--color) !important;
+   background: rgb(17, 24, 39);
+   border: 1px solid var(--light);
+}
+
+#myName {
+   color: var(--color) !important;
 }
